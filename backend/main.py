@@ -81,7 +81,7 @@ class EmotionResponse(BaseModel):
 
 def simulate_apple_health_data():
     if VID_MODE:
-        return {"heart_rate": 65, "respiratory_rate": 12}
+        return {"heart_rate": 62, "respiratory_rate": 10}
     elif TEST_MODE:
         hr = random.randint(55, 120)
         rr = random.randint(8, 35)
@@ -96,7 +96,7 @@ def simulate_apple_health_data():
 
 def classify_emotion_probabilistic(hr: int, rr: int) -> tuple[str, dict]:
     if VID_MODE:
-        return "sad", {"sad": 1.0}
+        return "calm", {"calm": 1.0}
 
     scores = {
         "calm": 0,
@@ -173,7 +173,7 @@ class PhraseRequest(BaseModel):
 @app.post("/api/phrase")
 async def get_phrase(req: PhraseRequest):
     prompt = (
-        f"Generate a supportive phrase for someone who just received a rejection email from something she was really looking forward to and is feeling {req.emotion}. "
+        f"Generate a supportive phrase for someone who just went on a walk and is feeling {req.emotion}. "
         f"They are a young woman. Make it sound like something a close friend would text. "
         f"Include natural punctuation like apostrophes and exclamation marks."
         f"Keep it under 7 words. Avoid quotes and clichés. No capital letters."
@@ -193,9 +193,9 @@ async def get_phrase(req: PhraseRequest):
             content = "".join(str(chunk) for chunk in content_chunks) if isinstance(content_chunks, list) else content_chunks
 
         song_data = {
-            "title": "this is me trying",
-            "artist": "Taylor Swift",
-            "url": "https://open.spotify.com/track/7kt9e9LFSpN1zQtYEl19o1?si=76b00c7747fa465b"
+            "title": "Moon Song",
+            "artist": "Phoebe Bridgers",
+            "url": "https://open.spotify.com/track/46RNrAkGsqWTDrv2ZPOAbx?si=80dbed3924574b75"
         }
 
         return {
