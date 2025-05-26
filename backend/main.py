@@ -1,4 +1,4 @@
-TEST_MODE = True
+TEST_MODE = False
 # VID_MODE = True - will use this to hard-code cases for my video
 
 import random, math, requests, os
