@@ -164,3 +164,48 @@ def detect_emotion():
         "emotion": emotion,
         "probabilities": probabilities
     }
+
+class PhraseRequest(BaseModel):
+    emotion: str
+    age_group: str
+    time_of_day: str
+
+@app.post("/api/phrase")
+async def get_phrase(req: PhraseRequest):
+    prompt = (
+        f"Generate a supportive phrase for someone who just woke up and is feeling {req.emotion}. "
+        f"They are a young woman. Make it sound like something a close friend would text. "
+        f"Include natural punctuation like apostrophes and exclamation marks."
+        f"Keep it under 7 words. Avoid quotes and clichés. No capital letters."
+    )
+
+    try:
+        res = client.chat.complete(
+            model=model,
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=30,
+            temperature=0.9
+        )
+
+        content = None
+        if res and hasattr(res, "choices") and res.choices and hasattr(res.choices[0], "message") and hasattr(res.choices[0].message, "content"):
+            content_chunks = res.choices[0].message.content
+            content = "".join(str(chunk) for chunk in content_chunks) if isinstance(content_chunks, list) else content_chunks
+
+        song_data = {
+            "title": "Good as Hell",
+            "artist": "Lizzo",
+            "url": "https://open.spotify.com/track/0ONxHHmZ6KtAd7w2p8NlCz"
+        }
+
+        return {
+            "phrase": content.replace("\n", " ") if content else "you're doing your best!",
+            "song": song_data
+        }
+
+    except Exception as e:
+        print("OpenRouter or song fetch error:", e)
+        return {
+            "phrase": "you're doing your best!",
+            "song": None
+        }
