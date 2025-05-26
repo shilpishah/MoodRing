@@ -193,9 +193,9 @@ async def get_phrase(req: PhraseRequest):
             content = "".join(str(chunk) for chunk in content_chunks) if isinstance(content_chunks, list) else content_chunks
 
         song_data = {
-            "title": "Nobody",
-            "artist": "Mitski",
-            "url": "https://open.spotify.com/track/2P5yIMu2DNeMXTyOANKS6k?si=b391d328fd214d20"
+            "title": "this is me trying",
+            "artist": "Taylor Swift",
+            "url": "https://open.spotify.com/track/7kt9e9LFSpN1zQtYEl19o1?si=76b00c7747fa465b"
         }
 
         return {
