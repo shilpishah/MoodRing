@@ -81,7 +81,7 @@ class EmotionResponse(BaseModel):
 
 def simulate_apple_health_data():
     if VID_MODE:
-        return {"heart_rate": 62, "respiratory_rate": 10}
+        return {"heart_rate": 78, "respiratory_rate": 16}
     elif TEST_MODE:
         hr = random.randint(55, 120)
         rr = random.randint(8, 35)
@@ -173,7 +173,7 @@ class PhraseRequest(BaseModel):
 @app.post("/api/phrase")
 async def get_phrase(req: PhraseRequest):
     prompt = (
-        f"Generate a supportive phrase for someone who just went on a walk and is feeling {req.emotion}. "
+        f"Generate a supportive phrase for someone who just finished up a long day and is feeling {req.emotion}. She's ready to get some rest now."
         f"They are a young woman. Make it sound like something a close friend would text. "
         f"Include natural punctuation like apostrophes and exclamation marks."
         f"Keep it under 7 words. Avoid quotes and clichés. No capital letters."
@@ -193,9 +193,9 @@ async def get_phrase(req: PhraseRequest):
             content = "".join(str(chunk) for chunk in content_chunks) if isinstance(content_chunks, list) else content_chunks
 
         song_data = {
-            "title": "Moon Song",
-            "artist": "Phoebe Bridgers",
-            "url": "https://open.spotify.com/track/46RNrAkGsqWTDrv2ZPOAbx?si=80dbed3924574b75"
+            "title": "Sunset Lover",
+            "artist": "Petit Biscuit",
+            "url": "https://open.spotify.com/track/0hNduWmlWmEmuwEFcYvRu1?si=4087f160d71148cd"
         }
 
         return {
