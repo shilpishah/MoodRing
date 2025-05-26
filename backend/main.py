@@ -96,7 +96,7 @@ def simulate_apple_health_data():
 
 def classify_emotion_probabilistic(hr: int, rr: int) -> tuple[str, dict]:
     if VID_MODE:
-        return "calm", {"calm": 1.0}
+        return "happy", {"happy": 1.0}
 
     scores = {
         "calm": 0,
