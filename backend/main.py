@@ -1,5 +1,5 @@
-VID_MODE = False
-TEST_MODE = False
+# VID_MODE = False
+# TEST_MODE = False
 
 import random, math, requests, os
 from fastapi import FastAPI
@@ -80,12 +80,6 @@ class EmotionResponse(BaseModel):
     probabilities: dict
 
 def simulate_apple_health_data():
-    if VID_MODE:
-        return {"heart_rate": 78, "respiratory_rate": 16}
-    elif TEST_MODE:
-        hr = random.randint(55, 120)
-        rr = random.randint(8, 35)
-    else:
         hour = datetime.now().hour
         hr = 70 + 10 * math.sin((math.pi / 12) * hour - math.pi / 2) + random.uniform(-3, 3)
         rr = 14 + 2 * math.sin((math.pi / 12) * hour - math.pi / 2) + random.uniform(-1, 1)
@@ -95,8 +89,6 @@ def simulate_apple_health_data():
     }
 
 def classify_emotion_probabilistic(hr: int, rr: int) -> tuple[str, dict]:
-    if VID_MODE:
-        return "happy", {"happy": 1.0}
 
     scores = {
         "calm": 0,
