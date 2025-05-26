@@ -1,6 +1,6 @@
 export async function fetchDynamicPhrase(emotion, ageGroup, timeOfDay) {
   try {
-    const response = await fetch("http://localhost:8000/api/phrase", {
+    const response = await fetch("https://moodring-ochl.onrender.com/api/phrase", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
