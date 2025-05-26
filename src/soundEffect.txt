@@ -1,0 +1,16 @@
+ // Sound effects per emotion category
+  function triggerPing(emotion) {
+    const sharpEmotions = ["fear", "anger", "stress", "overstimulated"];
+    const positiveEmotions = ["happy"];
+
+    let audio;
+    if (sharpEmotions.includes(emotion)) {
+      audio = new Audio('/ping_lowfreq.mp3');
+    } else if (positiveEmotions.includes(emotion)) {
+      audio = new Audio('/ping_chime.mp3');
+    } else {
+      audio = new Audio('/ping_soft.mp3');
+    }
+    audio.volume = 0.3;
+    audio.play().catch((e) => console.log('Audio play failed:', e));
+  }
