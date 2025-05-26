@@ -1,4 +1,4 @@
-VID_MODE = True
+VID_MODE = False
 TEST_MODE = False
 
 import random, math, requests, os
