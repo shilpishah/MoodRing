@@ -165,8 +165,8 @@ class PhraseRequest(BaseModel):
 @app.post("/api/phrase")
 async def get_phrase(req: PhraseRequest):
     prompt = (
-        f"Generate a supportive phrase for someone who just finished up a long day and is feeling {req.emotion}. She's ready to get some rest now."
-        f"They are a young woman. Make it sound like something a close friend would text. "
+        f"Generate a supportive phrase for someone is feeling {req.emotion}."
+        f"Make it sound like something a close friend would text. "
         f"Include natural punctuation like apostrophes and exclamation marks."
         f"Keep it under 7 words. Avoid quotes and clichés. No capital letters."
     )
