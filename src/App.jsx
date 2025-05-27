@@ -86,7 +86,7 @@ export default function App() {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
         transition={{ duration: 1 }}
-        className="rrelative h-[320px] w-[320px] md:h-screen md:w-screen flex flex-col justify-center items-center"
+        className="relative h-[100svh] w-[100svw] max-h-[500px] max-w-[500px] md:h-screen md:w-screen flex flex-col justify-center items-center"
       >
         {!canPlaySound && (
           <button
