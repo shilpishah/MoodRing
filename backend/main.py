@@ -1,5 +1,5 @@
-# VID_MODE = False
-# TEST_MODE = False
+TEST_MODE = False
+# VID_MODE = True - will use this to hard-code cases for my video
 
 import random, math, requests, os
 from fastapi import FastAPI
@@ -12,7 +12,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 from pathlib import Path
 
-load_dotenv(dotenv_path=Path(".env").resolve())
+load_dotenv(dotenv_path=Path(".env").resolve())  # get all my globals
 
 SPOTIFY_CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
 SPOTIFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
@@ -73,6 +73,37 @@ def spotify_callback(code: str):
         status_code=200
     )
 
+HARDCODED_SONGS = {
+    "happy": [
+        {"title": "Good as Hell", "artist": "Lizzo", "url": "https://open.spotify.com/track/0ONxHHmZ6KtAd7w2p8NlCz"},
+        {"title": "Walking on Sunshine", "artist": "Katrina & The Waves", "url": "https://open.spotify.com/track/6GG73zctY4uKY8IErBFPvf"},
+        {"title": "Electric Feel", "artist": "MGMT", "url": "https://open.spotify.com/track/2vwlzO0Qp8kfEtzTsCXfyE"}
+    ],
+    "sad": [
+        {"title": "Liability", "artist": "Lorde", "url": "https://open.spotify.com/track/0lx2cLdOt3piJbcaXIV74f"},
+        {"title": "Jealous", "artist": "Labrinth", "url": "https://open.spotify.com/track/6z9eQ0eC4CrbB4O3qI1pVb"},
+        {"title": "All I Want", "artist": "Kodaline", "url": "https://open.spotify.com/track/0xjNfFw4GzfyoOKzLnS4U3"}
+    ],
+    "calm": [
+        {"title": "Sunset Lover", "artist": "Petit Biscuit", "url": "https://open.spotify.com/track/6gBFPUFcJLzWGx4lenP6h2"},
+        {"title": "Weightless", "artist": "Marconi Union", "url": "https://open.spotify.com/track/6uc5jkL7CfpqDNo7n1NxDM"},
+        {"title": "Experience", "artist": "Ludovico Einaudi", "url": "https://open.spotify.com/track/7e6j28kDU3fv4ApYky4c1v"}
+    ],
+    "anger": [
+        {"title": "DNA.", "artist": "Kendrick Lamar", "url": "https://open.spotify.com/track/6HZILIRieu8S0iqY8kIKhj"},
+        {"title": "Bury a Friend", "artist": "Billie Eilish", "url": "https://open.spotify.com/track/4cG7HUWYHBV6R6tHn1gxrl"},
+        {"title": "Ignorance", "artist": "Paramore", "url": "https://open.spotify.com/track/7MDVWN3u6NnJ6r42zZ8LOE"}
+    ],
+    "overstimulated": [
+        {"title": "Intro", "artist": "The xx", "url": "https://open.spotify.com/track/6UelLqGlWMcVH1E5c4H7lY"},
+        {"title": "Motion Picture Soundtrack", "artist": "Radiohead", "url": "https://open.spotify.com/track/4MlA6mdRE7pFRxyoL1nbKa"},
+        {"title": "Holocene", "artist": "Bon Iver", "url": "https://open.spotify.com/track/1xpGyKyV26uPstk1Elgp9Q"}
+    ]
+}
+
+def recommend_song(emotion: str):
+    return random.choice(HARDCODED_SONGS.get(emotion, HARDCODED_SONGS["calm"]))
+
 class EmotionResponse(BaseModel):
     heart_rate: int
     respiratory_rate: int
@@ -80,6 +111,10 @@ class EmotionResponse(BaseModel):
     probabilities: dict
 
 def simulate_apple_health_data():
+    if TEST_MODE:
+        hr = random.randint(55, 120)
+        rr = random.randint(8, 35)
+    else:
         hour = datetime.now().hour
         hr = 70 + 10 * math.sin((math.pi / 12) * hour - math.pi / 2) + random.uniform(-3, 3)
         rr = 14 + 2 * math.sin((math.pi / 12) * hour - math.pi / 2) + random.uniform(-1, 1)
@@ -89,7 +124,6 @@ def simulate_apple_health_data():
     }
 
 def classify_emotion_probabilistic(hr: int, rr: int) -> tuple[str, dict]:
-
     scores = {
         "calm": 0,
         "sad": 0,
@@ -165,7 +199,7 @@ class PhraseRequest(BaseModel):
 @app.post("/api/phrase")
 async def get_phrase(req: PhraseRequest):
     prompt = (
-        f"Generate a supportive phrase for someone is feeling {req.emotion}."
+        f"Generate a supportive phrase for someone feeling {req.emotion}. "
         f"Make it sound like something a close friend would text. "
         f"Include natural punctuation like apostrophes and exclamation marks."
         f"Keep it under 7 words. Avoid quotes and clichés. No capital letters."
@@ -184,11 +218,7 @@ async def get_phrase(req: PhraseRequest):
             content_chunks = res.choices[0].message.content
             content = "".join(str(chunk) for chunk in content_chunks) if isinstance(content_chunks, list) else content_chunks
 
-        song_data = {
-            "title": "Sunset Lover",
-            "artist": "Petit Biscuit",
-            "url": "https://open.spotify.com/track/0hNduWmlWmEmuwEFcYvRu1?si=4087f160d71148cd"
-        }
+        song_data = recommend_song(req.emotion)
 
         return {
             "phrase": content.replace("\n", " ") if content else "you're doing your best!",
