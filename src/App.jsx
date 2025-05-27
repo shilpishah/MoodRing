@@ -72,7 +72,7 @@ export default function App() {
 
   if (!emotionData) {
     return (
-      <div className="flex items-center justify-center h-[320px] w-[320px] md:h-screen md:w-screen bg-black text-white text-xl">
+      <div className="fixed inset-0 flex flex-col justify-center items-center bg-black text-white text-xl overflow-hidden">
         loading your MoodRing...
       </div>
     );
@@ -86,7 +86,7 @@ export default function App() {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
         transition={{ duration: 1 }}
-        className="relative h-full w-full md:h-screen md:w-screen min-h-screen min-w-full flex flex-col justify-center items-center overflow-hidden"
+        className="fixed inset-0 flex flex-col justify-center items-center text-xl overflow-hidden"
       >
         {!canPlaySound && (
           <button
