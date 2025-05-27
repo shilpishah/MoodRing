@@ -8,7 +8,7 @@ export default function MoodAura({ emotion, phrase, song }) {
   };
 
   return (
-    <div className="relative h-[320px] w-[320px] sm:h-screen sm:w-screen flex flex-col justify-center items-center text-center bg-white overflow-hidden">
+    <div className="w-full h-full p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col items-center justify-center text-center">
       <motion.div
         className={`absolute w-[120vmax] h-[120vmax] rounded-full blur-3xl opacity-90 animate-pulse z-0`}
         style={{ background: mood.hexGradient }}
