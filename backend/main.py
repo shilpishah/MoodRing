@@ -75,29 +75,29 @@ def spotify_callback(code: str):
 
 HARDCODED_SONGS = {
     "happy": [
-        {"title": "Good as Hell", "artist": "Lizzo", "url": "https://open.spotify.com/track/0ONxHHmZ6KtAd7w2p8NlCz"},
-        {"title": "Walking on Sunshine", "artist": "Katrina & The Waves", "url": "https://open.spotify.com/track/6GG73zctY4uKY8IErBFPvf"},
-        {"title": "Electric Feel", "artist": "MGMT", "url": "https://open.spotify.com/track/2vwlzO0Qp8kfEtzTsCXfyE"}
+        {"title": "Good as Hell", "artist": "Lizzo", "url": "https://open.spotify.com/track/6KgBpzTuTRPebChN0VTyzV?si=b8f4a1fb31b04981"},
+        {"title": "Walking on Sunshine", "artist": "Katrina & The Waves", "url": "https://open.spotify.com/track/05wIrZSwuaVWhcv5FfqeH0?si=a8f3169c0ef74146"},
+        {"title": "Shut Up and Dance", "artist": "WALK THE MOON", "url": "https://open.spotify.com/track/4kbj5MwxO1bq9wjT5g9HaA?si=df96b67860804a52"}
     ],
     "sad": [
-        {"title": "Liability", "artist": "Lorde", "url": "https://open.spotify.com/track/0lx2cLdOt3piJbcaXIV74f"},
-        {"title": "Jealous", "artist": "Labrinth", "url": "https://open.spotify.com/track/6z9eQ0eC4CrbB4O3qI1pVb"},
-        {"title": "All I Want", "artist": "Kodaline", "url": "https://open.spotify.com/track/0xjNfFw4GzfyoOKzLnS4U3"}
+        {"title": "this is me trying", "artist": "Taylor Swift", "url": "https://open.spotify.com/track/7kt9e9LFSpN1zQtYEl19o1?si=b077f76718ed4583"},
+        {"title": "Nobody", "artist": "Mitsky", "url": "https://open.spotify.com/track/2P5yIMu2DNeMXTyOANKS6k?si=6bff87c732284770"},
+        {"title": "Someone You Loved", "artist": "Lewis Capaldi", "url": "https://open.spotify.com/track/7qEHsqek33rTcFNT9PFqLf?si=aee4448e99fd4d84"}
     ],
     "calm": [
-        {"title": "Sunset Lover", "artist": "Petit Biscuit", "url": "https://open.spotify.com/track/6gBFPUFcJLzWGx4lenP6h2"},
-        {"title": "Weightless", "artist": "Marconi Union", "url": "https://open.spotify.com/track/6uc5jkL7CfpqDNo7n1NxDM"},
-        {"title": "Experience", "artist": "Ludovico Einaudi", "url": "https://open.spotify.com/track/7e6j28kDU3fv4ApYky4c1v"}
+        {"title": "Sunset Lover", "artist": "Petit Biscuit", "url": "https://open.spotify.com/track/0hNduWmlWmEmuwEFcYvRu1?si=89c96becc5ea45b7"},
+        {"title": "Weightless", "artist": "Marconi Union", "url": "https://open.spotify.com/track/6kkwzB6hXLIONkEk9JciA6?si=cd5dd9c1451b40fa"},
+        {"title": "Experience", "artist": "Ludovico Einaudi", "url": "https://open.spotify.com/track/1BncfTJAWxrsxyT9culBrj?si=943ae8a35b3e4126"}
     ],
     "anger": [
-        {"title": "DNA.", "artist": "Kendrick Lamar", "url": "https://open.spotify.com/track/6HZILIRieu8S0iqY8kIKhj"},
-        {"title": "Bury a Friend", "artist": "Billie Eilish", "url": "https://open.spotify.com/track/4cG7HUWYHBV6R6tHn1gxrl"},
-        {"title": "Ignorance", "artist": "Paramore", "url": "https://open.spotify.com/track/7MDVWN3u6NnJ6r42zZ8LOE"}
+        {"title": "DNA.", "artist": "Kendrick Lamar", "url": "https://open.spotify.com/track/6HZILIRieu8S0iqY8kIKhj?si=0ac16875e15146f5"},
+        {"title": "Bury a Friend", "artist": "Billie Eilish", "url": "https://open.spotify.com/track/4SSnFejRGlZikf02HLewEF?si=37b4bd6deb954c2c"},
+        {"title": "Kill Bill", "artist": "SZA", "url": "https://open.spotify.com/track/3OHfY25tqY28d16oZczHc8?si=139abab5204641f2"}
     ],
     "overstimulated": [
-        {"title": "Intro", "artist": "The xx", "url": "https://open.spotify.com/track/6UelLqGlWMcVH1E5c4H7lY"},
-        {"title": "Motion Picture Soundtrack", "artist": "Radiohead", "url": "https://open.spotify.com/track/4MlA6mdRE7pFRxyoL1nbKa"},
-        {"title": "Holocene", "artist": "Bon Iver", "url": "https://open.spotify.com/track/1xpGyKyV26uPstk1Elgp9Q"}
+        {"title": "Intro", "artist": "The xx", "url": "https://open.spotify.com/track/5VfEuwErhx6X4eaPbyBfyu?si=ac00d44fafde41a3"},
+        {"title": "Motion Picture Soundtrack", "artist": "Radiohead", "url": "https://open.spotify.com/track/4SrRrB27n7fiRkQcPoKfpk?si=b9fbe4134e6643db"},
+        {"title": "Holocene", "artist": "Bon Iver", "url": "https://open.spotify.com/track/35KiiILklye1JRRctaLUb4?si=ccc254b9b35a4960"}
     ]
 }
 
